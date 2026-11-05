@@ -28,16 +28,12 @@ async function go(page: Page, path: string) {
 async function finish(page: Page) {
   await page.getByRole("button", { name: "終了して振り返る" }).click();
   await expect(
-    page.getByRole("heading", { name: "立ち止まった、その先に。" }),
+    page.getByRole("heading", { name: "振り返り", exact: true }),
   ).toBeFocused();
 }
 async function reset(page: Page) {
   await page.getByRole("button", { name: "リセット", exact: true }).click();
   await page.getByRole("button", { name: "最初からやり直す" }).click();
-}
-async function help(page: Page) {
-  if (await page.locator(".workspace-help>summary").isVisible())
-    await page.locator(".workspace-help>summary").click();
 }
 async function noOverflow(page: Page) {
   expect(
@@ -82,9 +78,8 @@ test("L01: investigation, safe exit, official comparison, reflection, reset and 
   page,
 }, info) => {
   await go(page, "/challenges/suspicious-email");
-  await help(page);
   await expect(page.locator(".hint-panel li")).toHaveCount(0);
-  await page.getByRole("button", { name: "ヒントを見る", exact: true }).click();
+  await page.locator(".hint-panel > summary").click();
   await expect(page.locator(".hint-panel li")).toHaveCount(1);
   await page.getByRole("button", { name: /こもれび配送.*お荷物/ }).click();
   await page.getByRole("button", { name: "差出人の詳細" }).click();
@@ -121,6 +116,51 @@ test("L01: investigation, safe exit, official comparison, reflection, reset and 
   await page.locator(".related-challenge").click();
   await expect(page.locator(".email-row")).toBeVisible();
 });
+test("hints reveal progressively by keyboard, persist when collapsed and reset with discoveries", async ({
+  page,
+}, info) => {
+  await go(page, "/challenges/suspicious-email");
+  const hints = page.locator(".hint-panel");
+  const summary = hints.locator("summary");
+  const discoveries = page.getByRole("progressbar", { name: "発見したこと" });
+  await expect(hints).not.toHaveAttribute("open");
+  await expect(discoveries).toHaveAttribute("aria-valuenow", "0");
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(hints.locator("li")).toHaveCount(1);
+  await expect(summary).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(hints).not.toHaveAttribute("open");
+  await page.keyboard.press("Enter");
+  await expect(hints.locator("li")).toHaveCount(1);
+  await page.getByRole("button", { name: "次のヒントを見る" }).click();
+  await expect(hints.locator("li")).toHaveCount(2);
+  await page.getByRole("button", { name: "次のヒントを見る" }).click();
+  await expect(hints.locator("li")).toHaveCount(3);
+  await expect(page.getByRole("button", { name: "すべて表示済み" })).toBeDisabled();
+  await page.locator(".email-row").click();
+  await page.getByRole("button", { name: "差出人の詳細" }).click();
+  await expect(discoveries).toHaveAttribute("aria-valuenow", "1");
+  await expect(page.locator(".discovery-track .found")).toHaveCount(1);
+  await expect(page.locator(".discovery-panel li")).toHaveCount(1);
+  await noOverflow(page);
+  await reset(page);
+  await expect(hints).not.toHaveAttribute("open");
+  await expect(hints.locator("li")).toHaveCount(0);
+  await expect(discoveries).toHaveAttribute("aria-valuenow", "0");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: `test-results/workspace-${info.project.name}.png`, fullPage: true });
+
+  await page.setViewportSize({ width: 320, height: 740 });
+  await summary.click();
+  await expect(hints.locator("li")).toHaveCount(1);
+  await noOverflow(page);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(summary).toBeVisible();
+  await expect(hints.locator("li")).toBeVisible();
+  await noOverflow(page);
+});
+
 test("L01: sent information can be addressed, deletion stays deleted", async ({
   page,
 }) => {
@@ -564,6 +604,44 @@ test("filters, empty state, keyboard navigation and direct article URLs", async 
   await expect(
     page.getByRole("button", { name: "お届け先を確認する", exact: true }),
   ).toBeFocused();
+});
+test("article contents support touch and keyboard navigation at narrow widths", async ({
+  page,
+}) => {
+  await go(page, "/knowledge/phishing");
+  const compact = (page.viewportSize()?.width ?? 0) <= 900;
+  const disclosure = page.locator(".article-mobile-contents");
+  if (compact) {
+    await expect(disclosure).not.toHaveAttribute("open");
+    await disclosure.locator("summary").focus();
+    await page.keyboard.press("Enter");
+    await expect(disclosure).toHaveAttribute("open");
+  } else {
+    await expect(disclosure).toBeHidden();
+  }
+  const contents = page.getByRole("navigation", { name: "この記事の目次" });
+  await expect(contents).toHaveCount(1);
+  const target = page.locator("#section-3 h2");
+  await contents.getByRole("button", { name: "予防のためにできること" }).focus();
+  await page.keyboard.press("Enter");
+  await expect(target).toBeFocused();
+  await expect(target).toBeInViewport();
+  await expect(page).toHaveURL(/#\/knowledge\/phishing$/);
+
+  for (const width of [320, 768]) {
+    await page.setViewportSize({ width, height: 844 });
+    await go(page, "/knowledge/checking-information");
+    await disclosure.locator("summary").click();
+    const lastEntry = contents.getByRole("button").last();
+    await expect(lastEntry).toBeVisible();
+    await noOverflow(page);
+    await lastEntry.click();
+    const lastHeading = page.locator("article > section[id] h2").last();
+    await expect(lastHeading).toBeFocused();
+    await expect(lastHeading).toBeInViewport();
+    await page.getByRole("link", { name: "解説一覧へ", exact: true }).click();
+    await expect(page).toHaveURL(/#\/knowledge$/);
+  }
 });
 test("all main pages fit at 320px and unknown route has a recovery link", async ({
   page,

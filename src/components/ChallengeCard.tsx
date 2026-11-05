@@ -3,6 +3,7 @@ import type { Scenario } from "../features/challenges/engine/types";
 import { useProgress } from "../features/progress/ProgressProvider";
 import { Icon, type IconName } from "./Icon";
 import { PhotoScene } from "../features/challenges/components/PhotoScene";
+import { BudouX } from "./BudouX";
 export const appIcons: Record<Scenario["app"], IconName> = {
   mail: "mail",
   post: "globe",
@@ -46,9 +47,15 @@ export function ChallengeVisual({ app }: { app: Scenario["app"] }) {
         <>
           <Icon name={appIcons[app]} size={24} />
           <div>
-            <strong>{excerpts[1]}</strong>
-            <span>{excerpts[0]}</span>
-            <small>{excerpts[2]}</small>
+            <strong>
+              <BudouX>{excerpts[1]}</BudouX>
+            </strong>
+            <span>
+              <BudouX>{excerpts[0]}</BudouX>
+            </span>
+            <small>
+              <BudouX>{excerpts[2]}</BudouX>
+            </small>
           </div>
         </>
       )}
@@ -63,10 +70,14 @@ export function ChallengeCard({ scenario }: { scenario: Scenario }) {
       <div className="card-content">
         <h3>
           {scenario.shortTitle.split("\n").map((line, i) => (
-            <span key={i}>{line}</span>
+            <span key={i}>
+              <BudouX>{line}</BudouX>
+            </span>
           ))}
         </h3>
-        <p>{scenario.description}</p>
+        <p>
+          <BudouX>{scenario.description}</BudouX>
+        </p>
         <span className="card-category">{scenario.category}</span>
         <div className="card-state">
           <span className="scenario-id">{scenario.id}</span>

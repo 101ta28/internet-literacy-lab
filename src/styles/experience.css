@@ -389,8 +389,12 @@
 .workspace-page .simulation-column {
   min-width: 0;
 }
-.workspace-page .mobile-objective {
-  display: none;
+.workspace-page .workspace-objective {
+  max-width: 68ch;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.9;
+  margin: 0 0 20px;
 }
 .workspace-page .mock-browser {
   background: white;
@@ -476,7 +480,7 @@
   color: #637d96;
 }
 .workspace-page .inbox {
-  min-height: 395px;
+  min-height: 260px;
 }
 .workspace-page .mock-section-title {
   padding: 19px 24px;
@@ -527,6 +531,11 @@
   margin-left: auto;
   white-space: nowrap;
   padding-top: 5px;
+  color: var(--muted);
+}
+.workspace-page .email-row > svg {
+  align-self: center;
+  flex-shrink: 0;
   color: var(--muted);
 }
 .workspace-page .inbox-note {
@@ -1088,23 +1097,17 @@
 .workspace-page .thread-actions > button {
   font-size: 11px;
 }
-.workspace-page .workspace-help > summary {
-  display: none;
-}
 .workspace-page .workspace-help-content {
   border: 1px solid #dfe5d6;
   border-radius: 9px;
   background: #f0f3e9;
-  padding: 24px;
+  padding: 20px;
 }
-.workspace-page .workspace-help-content > section {
-  padding-bottom: 23px;
-  margin-bottom: 22px;
+.workspace-page .workspace-help-content > section,
+.workspace-page .hint-panel {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #dce3d1;
-}
-.workspace-page .workspace-help-content h2 {
-  font-size: 15px;
-  margin: 10px 0 12px;
 }
 .workspace-page .workspace-help-content h3 {
   font-size: 13px;
@@ -1113,40 +1116,52 @@
   align-items: center;
   gap: 7px;
 }
-.workspace-page .workspace-help-content p {
-  font-size: 12px;
-  line-height: 1.9;
-  margin: 9px 0;
+.workspace-page .hint-panel > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
 }
-.workspace-page .workspace-help-content .subtle-note {
-  font-size: 10px;
-  color: #6d795f;
-  display: block;
-  margin-top: 15px;
+.workspace-page .hint-panel > summary::-webkit-details-marker {
+  display: none;
+}
+.workspace-page .hint-panel > summary small {
+  margin-left: auto;
+}
+.workspace-page .hint-panel[open] > summary > svg {
+  transform: rotate(90deg);
 }
 .workspace-page .hint-panel small {
-  font: 10px var(--mono);
+  font: 12px var(--mono);
   color: var(--muted);
 }
 .workspace-page .hint-panel ol {
-  font-size: 11px;
+  font-size: 13px;
   padding-left: 18px;
+  line-height: 1.9;
+}
+.workspace-page .hint-panel ol:empty {
+  display: none;
 }
 .workspace-page .hint-panel li {
   padding-left: 2px;
   margin-bottom: 12px;
 }
 .workspace-page .hint-panel .button {
-  font-size: 10px;
-  min-height: 39px;
+  font-size: 12px;
+  min-height: 44px;
 }
 .workspace-page .discovery-panel .mono {
-  font-size: 10px;
+  font-size: 12px;
 }
 .workspace-page .discovery-track {
   display: flex;
   gap: 5px;
-  margin: 17px 0;
+  margin: 14px 0 0;
 }
 .workspace-page .discovery-track > span {
   height: 5px;
@@ -1165,7 +1180,7 @@
 .workspace-page .discovery-panel li {
   display: flex;
   gap: 7px;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.9;
   margin-top: 12px;
 }
@@ -1177,7 +1192,8 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  font-size: 10px;
+  font-size: 12px;
+  min-height: 44px;
 }
 .workspace-page .sidebar-knowledge > svg:last-child {
   margin-left: auto;
@@ -1193,13 +1209,9 @@
   background: #f8f0e1;
   border-color: #e3cfaa;
 }
-.workspace-page .result-panel .eyebrow {
-  font-size: 9px;
-  color: #667956;
-}
 .workspace-page .result-panel h2 {
   font-size: 20px;
-  margin: 12px 0;
+  margin: 0 0 12px;
 }
 .workspace-page .result-panel p {
   font-size: 13px;
@@ -1233,12 +1245,7 @@
 }
 .workspace-page .reflection > h2 {
   font-size: 30px;
-  margin: 14px 0;
-}
-.workspace-page .reflection > .lead {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 2;
+  margin: 0;
 }
 .workspace-page .reflection > section {
   border-top: 1px solid var(--line);
@@ -1465,35 +1472,15 @@
   .workspace-page .workspace-sidebar {
     width: 100%;
   }
-  .workspace-page .mobile-objective {
-    display: block;
+  .workspace-page .workspace-objective {
     font-size: 12px;
-    color: var(--muted);
     margin-bottom: 15px;
   }
-  .workspace-page .workspace-help {
-    border: 1px solid #dce3d1;
-    border-radius: 7px;
-    background: #f0f3e9;
-  }
-  .workspace-page .workspace-help > summary {
-    display: list-item;
-    padding: 15px 20px;
-    font-size: 12px;
-    cursor: pointer;
-  }
   .workspace-page .workspace-help-content {
-    border: 0;
     padding: 15px 20px;
-  }
-  .workspace-page .workspace-help-content > section:first-child {
-    display: none;
   }
   .workspace-page .workspace-help-content h3 {
     font-size: 14px;
-  }
-  .workspace-page .workspace-help-content p {
-    font-size: 12px;
   }
   .workspace-page .hint-panel .button {
     font-size: 12px;
@@ -1538,6 +1525,10 @@
   }
   .workspace-page .email-row {
     padding: 19px 15px;
+  }
+  .workspace-page .inbox {
+    min-height: 0;
+    padding-bottom: 24px;
   }
   .workspace-page .email-row > span > span {
     font-size: 12px;
@@ -1634,9 +1625,6 @@
   }
   .workspace-page .reflection > h2 {
     font-size: 25px;
-  }
-  .workspace-page .reflection > .lead {
-    font-size: 12px;
   }
   .workspace-page .reflection h3 {
     font-size: 16px;

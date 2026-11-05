@@ -1,23 +1,23 @@
 {
-  "scanned": "2026-11-05",
+  "scanned": "2026-11-06",
   "findings": {
-    "fonts": "src/styles/variables.css:9 system Japanese sans; monospace for URLs",
-    "palette": "src/styles/variables.css:2 forest, off-white, lime",
-    "motion": "CSS only",
-    "spacing": "mixed raw values; migrate to 4px scale",
-    "framework": "React 19 / Vite 7 / TypeScript"
+    "system": "design.md:3 site chrome and guidance only; workspace pages are excluded",
+    "fonts": "src/styles/tokens.css:77 Japanese system sans, monospace for code",
+    "palette": "src/styles/tokens.css:48 paper, forest and ink",
+    "motion": "src/styles/base.css reduced-motion handling retained",
+    "spacing": "src/styles/tokens.css:2 shared spacing scale; existing layout retained",
+    "framework": "package.json React 19 / Vite 7 / TypeScript"
   },
   "preserve": [
-    "brand colours",
-    "system font",
-    "all curriculum, routes and handlers",
-    "fictional teaching illustrations",
-    "original virtual browser, mock applications and lesson styles"
+    "locked design system",
+    "all routes, form controls and handlers",
+    "all curriculum content and mock applications",
+    "experience.css and everyday.css"
   ],
   "introduce": [
-    "editorial hierarchy",
-    "shared tokens",
-    "wide two-column challenge index",
-    "explicit CSS boundary between site and lesson environment"
+    "plain typographic wordmark",
+    "concrete introductory copy",
+    "one description per page heading",
+    "body ink for site guidance"
   ]
 }

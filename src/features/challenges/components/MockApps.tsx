@@ -120,13 +120,12 @@ export function MockEmail({ state, dispatch }: MockProps) {
                 <small>配送を続けるには、住所の確認が必要です。</small>
               </span>
               <time>10:24</time>
+              <Icon name="chevron" size={18} />
             </button>
           )}
-          <p className="quiet inbox-note">
-            {s.removed
-              ? "この受信箱にメールはありません。"
-              : "メールを開いて、内容を確認できます。"}
-          </p>
+          {s.removed && (
+            <p className="quiet inbox-note">この受信箱にメールはありません。</p>
+          )}
         </div>
       )}
       {state.screen === "email" && (
@@ -217,9 +216,6 @@ export function MockEmail({ state, dispatch }: MockProps) {
           <div className="fake-field">
             住所 <strong>サンプル市 みどり町 0-0（架空）</strong>
           </div>
-          <p className="quiet">
-            教材に用意された架空の情報です。入力は不要です。
-          </p>
           <button
             className="button primary"
             disabled={!!s.submitted}

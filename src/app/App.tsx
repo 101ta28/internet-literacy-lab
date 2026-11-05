@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { ChallengeCard, ChallengeVisual } from "../components/ChallengeCard";
 import { Icon } from "../components/Icon";
+import { BudouX } from "../components/BudouX";
 import { ChallengeWorkspace } from "../features/challenges/components/ChallengeWorkspace";
 import { scenarios } from "../features/challenges/scenarios";
 import { articles } from "../features/knowledge/articles";
@@ -36,20 +37,9 @@ function Header() {
           to="/"
           aria-label="Internet Literacy Lab トップ"
         >
-          <span className="brand-symbol" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </span>
-          <span>
-            Internet Literacy
-            <span>
-              Lab<span className="brand-dot">.</span>
-            </span>
-          </span>
+          Internet Literacy Lab
         </Link>
         <Navigation />
-        <span className="header-note">登録なしで、すぐに体験</span>
       </div>
     </header>
   );
@@ -59,12 +49,8 @@ function Footer() {
     <footer className="site-footer">
       <div className="container footer-inner">
         <Link className="footer-brand" to="/">
-          Internet Literacy Lab<span>.</span>
+          Internet Literacy Lab
         </Link>
-        <p>ここでの失敗を、明日の判断力に。</p>
-        <span className="footer-meta">
-          架空のサービスを使った、体験型ラボ。
-        </span>
         <Link to="/about">このサイトについて</Link>
       </div>
     </footer>
@@ -118,19 +104,25 @@ function HeroScene() {
     <figure className="hero-scene">
       <figcaption>こもれび配送からのメール / 今日 10:24</figcaption>
       <blockquote>
-        <p>お荷物のお届け先について</p>
-        <p>配送を続けるには、住所の確認が必要です。</p>
+        <p>
+          <BudouX>お荷物のお届け先について</BudouX>
+        </p>
+        <p>
+          <BudouX>配送を続けるには、住所の確認が必要です。</BudouX>
+        </p>
       </blockquote>
       <div className="hero-url">
         <span>お届け先を確認する</span>
         <code>https://komorebi-verify.example</code>
       </div>
       <p className="hero-question">
-        このリンク、
+        <BudouX>このリンク、</BudouX>
         <br />
-        本当に公式？
+        <BudouX>本当に公式？</BudouX>
       </p>
-      <p className="scene-bottom">すべて架空。だから、試せる。</p>
+      <p className="scene-bottom">
+        <BudouX>体験「そのメール、本当に大丈夫？」から</BudouX>
+      </p>
     </figure>
   );
 }
@@ -140,45 +132,39 @@ function HomePage() {
       <section className="hero container">
         <div className="hero-copy">
           <h1>
-            失敗できる、
+            <BudouX>失敗できる、</BudouX>
             <br />
-            架空のインターネット。
+            <BudouX>架空のインターネット。</BudouX>
           </h1>
           <p className="hero-description">
-            安全な模擬環境で、ネットの判断力を育てよう。
+            <BudouX>
+              メールのリンク、SNSの公開範囲。操作の結果を確かめながら練習できます。
+            </BudouX>
           </p>
           <div className="hero-actions">
             <Link className="button primary large" to="/challenges">
               体験をはじめる
             </Link>
             <Link className="text-button" to="/knowledge">
-              まずは、知る
+              解説を読む
             </Link>
           </div>
-          <div className="hero-benefits">
-            <span>
-              <Icon name="check" size={14} /> アカウント登録不要
-            </span>
-            <span>
-              <Icon name="check" size={14} /> 何度でもやり直せる
-            </span>
-          </div>
+          <p className="hero-benefits">
+            <BudouX>アカウント登録不要</BudouX>
+          </p>
         </div>
         <HeroScene />
       </section>
       <div className="principles-strip">
         <div className="container">
           <span>
-            <Icon name="shield" />
-            本物の個人情報は、使いません。
+            <BudouX>本物の個人情報は、使いません。</BudouX>
           </span>
           <span>
-            <Icon name="globe" />
-            投稿や送信は、この画面の中だけ。
+            <BudouX>投稿や送信は、この画面の中だけ。</BudouX>
           </span>
           <span>
-            <Icon name="refresh" />
-            正解を急がず、いろいろ試そう。
+            <BudouX>結果を見てから、何度でもやり直せます。</BudouX>
           </span>
         </div>
       </div>
@@ -186,11 +172,11 @@ function HomePage() {
         <div className="section-heading">
           <div>
             <h2>
-              気になる場面から、
-              <br />
-              試してみよう。
+              <BudouX>体験を選ぶ</BudouX>
             </h2>
-            <p>順番も、予習もいりません。ひとつ約5〜7分の小さな体験。</p>
+            <p>
+              <BudouX>1つ約5〜7分。どの体験からでも始められます。</BudouX>
+            </p>
           </div>
           <Link className="text-button" to="/challenges">
             すべての体験を見る
@@ -202,44 +188,16 @@ function HomePage() {
           ))}
         </div>
       </section>
-      <section className="container approach">
+      <section className="container knowledge-banner">
         <div>
           <h2>
-            「やってみた」が、
-            <br />
-            自分の判断に変わる。
+            <BudouX>体験のしくみを読む</BudouX>
           </h2>
-        </div>
-        <ol className="approach-steps">
-          {[
-            [
-              "01",
-              "触ってみる",
-              "メールやSNSに似た画面を、いつもどおりに操作。",
-            ],
-            ["02", "気づいてみる", "見えなかった情報や、相手の視点に気づく。"],
-            [
-              "03",
-              "もう一度、選んでみる",
-              "立ち止まってやり直す。その過程も、大切な発見。",
-            ],
-          ].map(([n, title, description]) => (
-            <li key={n}>
-              <div>
-                <h3>{title}</h3>
-                <p>{description}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-      <section className="container knowledge-banner">
-        <div className="knowledge-banner-icon">
-          <Icon name="book" size={55} />
-        </div>
-        <div>
-          <h2>「なぜ？」を、そのままにしない。</h2>
-          <p>体験で気になったことを、やさしい解説でもう少し深く。</p>
+          <p>
+            <BudouX>
+              フィッシングやSNSの公開範囲などを、テーマごとに解説しています。
+            </BudouX>
+          </p>
         </div>
         <Link className="button secondary" to="/knowledge">
           解説を読む
@@ -249,19 +207,22 @@ function HomePage() {
   );
 }
 function PageHeading({
-  eyebrow,
   title,
-  children,
+  description,
 }: {
-  eyebrow: string;
   title: string;
-  children: ReactNode;
+  description?: string;
 }) {
   return (
     <div className="page-heading">
-      <h1>{eyebrow.split(" / ").at(-1)}</h1>
-      <p className="page-lead">{title}</p>
-      <p>{children}</p>
+      <h1>
+        <BudouX>{title}</BudouX>
+      </h1>
+      {description && (
+        <p>
+          <BudouX>{description}</BudouX>
+        </p>
+      )}
     </div>
   );
 }
@@ -279,12 +240,7 @@ function ChallengeListPage() {
   );
   return (
     <div className="container page-content">
-      <PageHeading
-        eyebrow="CHALLENGES / 体験する"
-        title="いつものネットを、違う視点から。"
-      >
-        好きな場面から、自由に。失敗しても、何度でもやり直せます。
-      </PageHeading>
+      <PageHeading title="体験する" />
       <div className="filters">
         <label>
           カテゴリ
@@ -335,8 +291,9 @@ function ChallengeListPage() {
         </div>
       ) : (
         <div className="empty-state">
-          <h2>この条件に合う体験はありません。</h2>
-          <p>絞り込みを変えて探してみましょう。</p>
+          <h2>
+            <BudouX>この条件に合う体験はありません。</BudouX>
+          </h2>
           <button
             className="button secondary"
             onClick={() => {
@@ -349,23 +306,13 @@ function ChallengeListPage() {
           </button>
         </div>
       )}
-      <div className="list-note">
-        <Icon name="shield" />
-        <p>
-          ここに出てくる人・サービス・出来事は、すべて架空です。
-          <br />
-          実際の個人情報を使わずに体験できます。
-        </p>
-      </div>
     </div>
   );
 }
 function KnowledgeListPage() {
   return (
     <div className="container page-content">
-      <PageHeading eyebrow="KNOWLEDGE / 知る" title="気づきに、理由を添えて。">
-        体験の前でも、あとでも。気になったテーマから読んでみよう。
-      </PageHeading>
+      <PageHeading title="知る" />
       <div className="knowledge-list">
         {articles.map((a, i) => (
           <Link
@@ -375,9 +322,13 @@ function KnowledgeListPage() {
           >
             <span className="knowledge-number">0{i + 1}</span>
             <div>
-              <h2>{a.title}</h2>
+              <h2>
+                <BudouX>{a.title}</BudouX>
+              </h2>
               <span className="card-category">{a.category}</span>
-              <p>{a.intro}</p>
+              <p>
+                <BudouX>{a.intro}</BudouX>
+              </p>
               <small>約{a.readMinutes}分で読めます</small>
             </div>
           </Link>
@@ -390,6 +341,26 @@ export function KnowledgeArticle() {
   const { slug } = useParams();
   const article = articles.find((a) => a.id === slug);
   if (!article) return <NotFound />;
+  const contents = (
+    <nav aria-label="この記事の目次" className="article-contents">
+      <ol>
+        {article.sections.map((section, i) => (
+          <li key={section.title}>
+            <button
+              className="text-button"
+              onClick={() => {
+                const target = document.getElementById(`section-${i}`);
+                target?.querySelector("h2")?.focus({ preventScroll: true });
+                target?.scrollIntoView({ block: "start" });
+              }}
+            >
+              <BudouX>{section.title}</BudouX>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
   return (
     <div className="container article-page">
       <Link to="/knowledge" className="back-link">
@@ -397,25 +368,36 @@ export function KnowledgeArticle() {
       </Link>
       <div className="article-layout">
         <article>
-          <h1>{article.title}</h1>
+          <h1>
+            <BudouX>{article.title}</BudouX>
+          </h1>
           <div className="article-meta">
             <span>約{article.readMinutes}分</span>
             <span>最終更新：{article.updatedAt}</span>
           </div>
-          <p className="article-intro">{article.intro}</p>
+          <p className="article-intro">
+            <BudouX>{article.intro}</BudouX>
+          </p>
+          <details className="article-mobile-contents" key={article.id}>
+            <summary>この記事の内容</summary>
+            {contents}
+          </details>
           {article.sections.map((section, i) => (
             <section key={section.title} id={`section-${i}`}>
-              <h2>{section.title}</h2>
+              <h2 tabIndex={-1}>
+                <BudouX>{section.title}</BudouX>
+              </h2>
               {section.paragraphs.map((p) => (
-                <p key={p}>{p}</p>
+                <p key={p}>
+                  <BudouX>{p}</BudouX>
+                </p>
               ))}
             </section>
           ))}
           <section className="article-references">
-            <h2>参考資料</h2>
-            <p className="quiet">
-              以下は外部サイトです。リンクを選ぶと新しいタブで開きます。
-            </p>
+            <h2>
+              <BudouX>参考資料</BudouX>
+            </h2>
             {article.references.map((r) => (
               <a
                 key={r.url}
@@ -423,7 +405,7 @@ export function KnowledgeArticle() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {r.title}
+                <BudouX>{r.title}</BudouX>
                 <Icon name="external" size={15} />
                 <span className="sr-only">（外部サイト・新しいタブ）</span>
               </a>
@@ -431,27 +413,16 @@ export function KnowledgeArticle() {
           </section>
         </article>
         <aside className="article-sidebar">
-          <div>
-            <h2>この記事の内容</h2>
-            <ol>
-              {article.sections.map((section, i) => (
-                <li key={section.title}>
-                  <button
-                    className="text-button"
-                    onClick={() =>
-                      document
-                        .getElementById(`section-${i}`)
-                        ?.scrollIntoView({ block: "start" })
-                    }
-                  >
-                    {section.title}
-                  </button>
-                </li>
-              ))}
-            </ol>
+          <div className="article-desktop-contents">
+            <h2>
+              <BudouX>この記事の内容</BudouX>
+            </h2>
+            {contents}
           </div>
           <div>
-            <h2>体験で確かめよう。</h2>
+            <h2>
+              <BudouX>関連する体験</BudouX>
+            </h2>
             {scenarios
               .filter((s) => article.challengeIds.includes(s.id))
               .map((s) => (
@@ -461,7 +432,9 @@ export function KnowledgeArticle() {
                   key={s.id}
                 >
                   <ChallengeVisual app={s.app} />
-                  <strong>{s.title}</strong>
+                  <strong>
+                    <BudouX>{s.title}</BudouX>
+                  </strong>
                   <span className="text-button">体験する</span>
                 </Link>
               ))}
@@ -500,15 +473,12 @@ function ProgressPage() {
   );
   return (
     <div className="container page-content">
-      <PageHeading
-        eyebrow="YOUR PROGRESS / 学習の記録"
-        title="あなたが見つけた、小さな気づき。"
-      >
-        速さや点数は競いません。試したこと、発見したことを振り返ろう。
-      </PageHeading>
+      <PageHeading title="学習の記録" />
       {!available && (
         <p className="storage-warning">
-          端末への保存が使えないため、このページを開いている間だけの記録です。
+          <BudouX>
+            端末への保存が使えないため、このページを開いている間だけの記録です。
+          </BudouX>
         </p>
       )}
       <div className="progress-stats">
@@ -541,7 +511,9 @@ function ProgressPage() {
             <section className="progress-item" key={s.id}>
               <div className="row spread wrap">
                 <div>
-                  <h2>{s.title}</h2>
+                  <h2>
+                    <BudouX>{s.title}</BudouX>
+                  </h2>
                   <span className="progress-status">
                     {s.id} /{" "}
                     {entry?.reflected
@@ -573,7 +545,7 @@ function ProgressPage() {
                       .map((d) => (
                         <li key={d.id}>
                           <Icon name="check" size={15} />
-                          {d.title}
+                          <BudouX>{d.title}</BudouX>
                         </li>
                       ))}
                   </ul>
@@ -592,11 +564,15 @@ function ProgressPage() {
       </div>
       <div className="progress-reset">
         <div>
-          <h2>この端末だけの、あなたの記録。</h2>
+          <h2>
+            <BudouX>このブラウザの学習記録</BudouX>
+          </h2>
           <p>
-            保存するのは体験状況・発見したポイント・日時だけです。
+            <BudouX>
+              保存するのは体験状況・発見したポイント・日時だけです。
+            </BudouX>
             <br />
-            ブラウザのデータを消すと、この記録も消えます。
+            <BudouX>ブラウザのデータを消すと、この記録も消えます。</BudouX>
           </p>
         </div>
         <button className="text-button" onClick={() => setConfirm(true)}>
@@ -606,7 +582,9 @@ function ProgressPage() {
       {confirm && (
         <div className="reset-confirm" role="alert">
           <p>
-            この端末の学習記録をすべて削除します。この操作は元に戻せません。
+            <BudouX>
+              この端末の学習記録をすべて削除します。この操作は元に戻せません。
+            </BudouX>
           </p>
           <div className="row">
             <button
@@ -633,7 +611,11 @@ function ProgressPage() {
           </div>
         </div>
       )}
-      {notice && <p role="status">{notice}</p>}
+      {notice && (
+        <p role="status">
+          <BudouX>{notice}</BudouX>
+        </p>
+      )}
     </div>
   );
 }
@@ -641,52 +623,60 @@ function AboutPage() {
   return (
     <div className="container about-page">
       <PageHeading
-        eyebrow="ABOUT THIS LAB / このサイトについて"
-        title="ここでの失敗を、明日の判断力に。"
-      >
-        Internet Literacy Lab
-        は、架空のインターネットを操作しながら、日々の判断を考えるための場所です。
-      </PageHeading>
+        title="このサイトについて"
+        description="Internet Literacy Lab は、架空のメールやSNSを操作し、その結果を確かめられる学習サイトです。"
+      />
       <div className="about-copy">
         <section>
-          <h2>禁止事項を覚える、その先へ。</h2>
+          <h2>
+            <BudouX>模擬環境</BudouX>
+          </h2>
           <p>
-            メールを開く。写真を載せる。コメントを書く。インターネットでは、毎日たくさんの小さな判断をしています。
+            <BudouX>
+              人物、学校、会社、サービス、メールアドレスはすべて架空です。模擬URLには教材用の
+              .example
+              ドメインを使用しています。ボタンを押しても、実際のSNSへの投稿やメール送信は起こりません。
+            </BudouX>
           </p>
           <p>
-            このラボでは、操作の結果やほかの人の視点を確かめながら、別の選択を試せます。「失敗したら終わり」ではなく、途中で気づいて対応を変えることも大切にしています。
-          </p>
-        </section>
-        <section>
-          <h2>安全な、架空の世界です。</h2>
-          <p>
-            人物、学校、会社、サービス、メールアドレスはすべて架空です。模擬URLには教材用の
-            .example
-            ドメインを使用しています。ボタンを押しても、実際のSNSへの投稿やメール送信は起こりません。
-          </p>
-          <p>
-            本当のパスワードや住所を入力する欄、画像をアップロードする機能はありません。教材に用意された情報で操作してください。
+            <BudouX>
+              本当のパスワードや住所を入力する欄、画像をアップロードする機能はありません。教材に用意された情報で操作してください。
+            </BudouX>
           </p>
         </section>
         <section>
-          <h2>記録は、このブラウザの中だけ。</h2>
+          <h2>
+            <BudouX>学習記録とプライバシー</BudouX>
+          </h2>
           <p>
-            アカウント登録は不要です。体験状況、発見したポイント、最終体験日時を端末のブラウザに保存します。投稿の文章や操作履歴は保存しません。
+            <BudouX>
+              アカウント登録は不要です。体験状況、発見したポイント、最終体験日時を端末のブラウザに保存します。投稿の文章や操作履歴は保存しません。
+            </BudouX>
           </p>
           <p>
-            広告・アクセス解析・外部フォントは使っていません。解説の参考資料リンクを自分で選んだ場合は、外部サイトに移動します。
+            <BudouX>
+              広告・アクセス解析・外部フォントは使っていません。解説の参考資料リンクを自分で選んだ場合は、外部サイトに移動します。
+            </BudouX>
           </p>
           <p>
-            保存機能が使えないブラウザでも体験できます。進捗は「学習の記録」から削除できます。
+            <BudouX>
+              保存機能が使えないブラウザでも体験できます。進捗は「学習の記録」から削除できます。
+            </BudouX>
           </p>
         </section>
         <section>
-          <h2>現実は、一つの答えではありません。</h2>
+          <h2>
+            <BudouX>教材と現実の違い</BudouX>
+          </h2>
           <p>
-            教材の結果は起こり得る一例です。必ずその結果になるという予測ではなく、法律上の違法性を判定するものでもありません。実際のトラブルは、背景や状況によって必要な対応が変わります。
+            <BudouX>
+              教材の結果は起こり得る一例です。必ずその結果になるという予測ではなく、法律上の違法性を判定するものでもありません。実際のトラブルは、背景や状況によって必要な対応が変わります。
+            </BudouX>
           </p>
           <p>
-            困ったときは一人で抱えず、信頼できる人やサービスの相談窓口を頼ってください。各解説記事には公的機関などの参考資料を載せています。
+            <BudouX>
+              困ったときは一人で抱えず、信頼できる人やサービスの相談窓口を頼ってください。各解説記事には公的機関などの参考資料を載せています。
+            </BudouX>
           </p>
         </section>
         <Link className="button primary" to="/challenges">
@@ -699,8 +689,9 @@ function AboutPage() {
 function NotFound() {
   return (
     <div className="container empty-state">
-      <h1>このページは見つかりませんでした。</h1>
-      <p>URLを確認するか、トップページから体験を選んでください。</p>
+      <h1>
+        <BudouX>このページは見つかりませんでした。</BudouX>
+      </h1>
       <Link className="button primary" to="/">
         トップページへ
       </Link>

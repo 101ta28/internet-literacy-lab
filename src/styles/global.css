@@ -1,12 +1,19 @@
-/* Hallmark · shape: Index-First · genre: editorial · theme: brand · redesign: full
+/* Hallmark · checked: 2026-11-06 · shape: Index-First · genre: editorial · theme: brand · redesign: polish
  * paper: #f7f8f2 · accent: #2e4534 · display: system Japanese sans · body: system Japanese sans · hero: Banner (/), app screen (/challenges/*), Long Document (/knowledge/*) · nav: masthead · footer: colophon
  * signature: a real fictional delivery message, set as a question · axes: light/grotesk-sans/cool · posture: Committed forest specimen surface · contrast: paired tokens reviewed · fold: verified at 1280x800 · v2.0.0 */
-/* Hallmark · pre-emit critique: P4 H4 E3 S4 R4 V4 · weakest: E, consolidate small labels and raw colour declarations before rendering */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V3 · weakest: V, layout retained for this polish; replace decorative branding and vague copy with the lesson's concrete actions */
 /* Hallmark · waive 1 · preflight found the system Japanese sans stack in variables.css · the literacy lab must remain local, offline and readable across Japanese devices */
 /* Hallmark · waive 25 · Japanese prose uses a shorter character measure than Latin prose · article columns fit about 35 Japanese characters to keep lessons readable */
 /* Hallmark · dropped arrow · gate 63 removes decorative arrow icons; these are Icon component names, not form fields */
 /* Hallmark · hero-review: in-thread · fold verified in Playwright captures at 320, 390, 1280, 1440 and 1920 · no open hero defects */
-/* Hallmark · finish-review: in-thread · site-only review; lesson UI restored and isolated at user request */
+/* Hallmark · built: Hallmark · redesign: polish · site chrome and introductory copy only; workspace styles and teaching material preserved */
+/* Hallmark · answered F6 · empty-state headings contain prose, not display figures */
+/* Hallmark · answered F15 · retained layout uses separate gaps for navigation, the hero and the challenge index */
+/* Hallmark · answered F20 · the challenge index contains seven real lessons; keep all seven and the existing two-column layout */
+/* Hallmark · dropped brand-symbol, brand-dot, header-note, knowledge-banner-icon · decorative elements removed at the user's request */
+/* Hallmark · dropped book, globe, refresh · decorative Icon names removed from site guidance; these are not form fields */
+/* Hallmark · reworded introductory headings and descriptions · user requested concrete copy; before and after text recorded in .hallmark/polish-copy.json */
+/* Hallmark · reworded "気になる場面から、 試してみよう。", "「やってみた」が、 自分の判断に変わる。", "触ってみる", "気づいてみる", "もう一度、選んでみる", "「なぜ？」を、そのままにしない。" · concrete lesson actions replace generic invitations at the user's request */
 @import "./tokens.css";
 @import "./variables.css";
 @import "./base.css";
@@ -328,21 +335,12 @@ select:not(:where(.workspace-page, .workspace-page *)) {
   display: flex;
   gap: var(--space-20);
   color: var(--muted);
-  padding-bottom: var(--space-32);
   border-bottom: 1px solid var(--line);
 }
-.article-layout article > section h2 {
-  display: flex;
-  gap: var(--space-md);
-  align-items: center;
-}
-.article-layout article > section p {
-  margin: 0 0 var(--space-md);
-}
-.article-sidebar ol {
+.article-contents ol {
   color: var(--muted);
 }
-.article-sidebar li {
+.article-contents li {
   padding-left: var(--space-2xs);
 }
 .related-challenge > strong {
@@ -359,7 +357,6 @@ select:not(:where(.workspace-page, .workspace-page *)) {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  min-height: 40px;
   text-decoration: underline;
   text-underline-offset: 4px;
   overflow-wrap: anywhere;
@@ -583,40 +580,6 @@ progress:not(:where(.workspace-page, .workspace-page *))::-moz-progress-bar {
   .knowledge-list-item small {
     font-size: 14px;
   }
-  .article-page {
-    padding-top: var(--space-lg);
-  }
-  .article-layout h1 {
-    line-height: 1.6;
-  }
-  .article-intro {
-    font-size: 14px;
-  }
-  .article-layout article > section h2 {
-    gap: var(--space-sm);
-  }
-  .article-layout article > section p {
-    font-size: 14px;
-    line-height: 2.1;
-  }
-  .article-sidebar {
-    gap: 0;
-  }
-  .article-sidebar > div:first-child {
-    display: none;
-  }
-  .article-references {
-    padding: var(--space-md);
-  }
-  .article-references > a {
-    font-size: 14px;
-    line-height: 1.9;
-  }
-  .article-meta {
-    font-size: 14px;
-    gap: var(--space-md);
-    padding-bottom: var(--space-lg);
-  }
   .progress-stats {
     padding: var(--space-20) 0;
     margin-top: var(--space-2xs);
@@ -760,44 +723,12 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
 }
 .brand {
   display: inline-flex;
-  gap: var(--space-sm);
   align-items: center;
   flex-shrink: 0;
-}
-.brand > span:last-child {
-  font-size: 16px;
+  min-height: 44px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 1.2;
-}
-.brand > span:last-child > span {
-  display: block;
-  font-size: 24px;
-}
-.brand-symbol {
-  width: 40px;
-  height: 44px;
-  background: var(--forest);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2xs);
-  position: relative;
-  color: var(--lime);
-}
-.brand-symbol i {
-  height: 24px;
-  width: 2px;
-  background: currentColor;
-}
-.brand-symbol:after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 2px;
-  background: currentColor;
-}
-.brand-dot {
-  color: var(--forest);
+  line-height: 1.4;
 }
 .site-header nav {
   display: flex;
@@ -816,9 +747,6 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
 }
 .site-header nav a:hover {
   border-color: var(--muted);
-}
-.header-note {
-  display: none;
 }
 .hero {
   display: grid;
@@ -848,17 +776,9 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   gap: var(--space-lg);
 }
 .hero-benefits {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
+  margin: var(--space-lg) 0 0;
   font-size: 14px;
-  color: var(--muted);
-}
-.hero-benefits > span {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2xs);
+  color: var(--ink);
 }
 .hero-scene {
   min-width: 0;
@@ -923,7 +843,7 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   justify-content: space-between;
   gap: var(--space-lg);
 }
-.principles-strip span {
+.principles-strip > .container > span {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -945,7 +865,7 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
 }
 .section-heading p {
   margin: 0;
-  color: var(--muted);
+  color: var(--ink);
   font-size: 16px;
 }
 .challenge-grid {
@@ -997,7 +917,7 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   line-height: 1.5;
   margin-bottom: var(--space-sm);
 }
-.card-content h3 span {
+.card-content h3 > span {
   display: block;
 }
 .card-content > p {
@@ -1047,7 +967,7 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   line-height: 1.6;
   margin-bottom: var(--space-sm);
 }
-.challenge-visual span,
+.challenge-visual > div > span,
 .challenge-visual small {
   display: block;
   font-size: 14px;
@@ -1072,36 +992,6 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
 .visual-comment {
   background: var(--warm-paper);
 }
-.approach {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--gap-columns);
-  border-top: 1px solid var(--line);
-  padding-block: var(--space-2xl);
-}
-.approach h2 {
-  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
-}
-.approach-steps {
-  margin: 0;
-  padding-left: var(--space-lg);
-}
-.approach-steps li {
-  padding: var(--space-lg) 0 var(--space-lg) var(--space-sm);
-  border-bottom: 1px solid var(--line);
-}
-.approach-steps li:first-child {
-  padding-top: 0;
-}
-.approach-steps h3 {
-  font-size: 22px;
-  margin-bottom: var(--space-xs);
-}
-.approach-steps p {
-  font-size: 16px;
-  margin: 0;
-  color: var(--muted);
-}
 .knowledge-banner {
   display: flex;
   gap: var(--space-xl);
@@ -1109,16 +999,13 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   border-top: 1px solid var(--line);
   padding-block: var(--space-2xl);
 }
-.knowledge-banner-icon {
-  display: none;
-}
 .knowledge-banner h2 {
   font-size: clamp(1.75rem, 2.8vw, 2.5rem);
   margin-bottom: var(--space-md);
 }
 .knowledge-banner p {
   font-size: 16px;
-  color: var(--muted);
+  color: var(--ink);
   margin: 0;
 }
 .knowledge-banner > .button {
@@ -1139,15 +1026,8 @@ svg:not(:where(.workspace-page, .workspace-page *)) {
   font-size: 24px;
   font-weight: 700;
 }
-.footer-inner p {
-  margin: 0;
-  font-size: 16px;
-}
-.footer-meta {
-  font-size: 14px;
-  color: var(--muted);
-}
 .footer-inner > a:last-child {
+  grid-column: 2;
   justify-self: end;
   font-size: 14px;
 }
@@ -1239,6 +1119,20 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 .page-content {
   padding-block: var(--space-2xl);
 }
+.page-heading:not(:where(.workspace-page, .workspace-page *)) {
+  margin-bottom: var(--space-xl);
+}
+.page-heading h1:not(:where(.workspace-page, .workspace-page *)) {
+  margin-bottom: var(--space-md);
+  line-height: 1.4;
+}
+.page-heading p:not(:where(.workspace-page, .workspace-page *)) {
+  max-width: 42em;
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.8;
+}
 .filters {
   background: var(--color-paper-2);
   padding: var(--space-lg);
@@ -1303,6 +1197,8 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 .article-layout h1 {
   font-size: clamp(2rem, 3vw, 3rem);
   margin: 0 0 var(--space-lg);
+  letter-spacing: normal;
+  text-wrap: pretty;
 }
 .article-intro {
   font-size: 18px;
@@ -1311,7 +1207,8 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 .article-meta {
   font-size: 14px;
   flex-wrap: wrap;
-  padding-block: var(--space-lg);
+  padding-block: 0 var(--space-lg);
+  margin-bottom: var(--space-lg);
 }
 .article-layout article > section {
   margin-top: var(--space-2xl);
@@ -1319,10 +1216,20 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 .article-layout article > section h2 {
   font-size: 26px;
   margin-bottom: var(--space-lg);
+  letter-spacing: normal;
+  text-wrap: pretty;
 }
 .article-layout article > section p {
   font-size: 16px;
   line-height: 2;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+.article-layout article > section p + p {
+  margin-top: var(--space-lg);
+}
+.article-mobile-contents {
+  display: none;
 }
 .article-sidebar {
   position: sticky;
@@ -1339,13 +1246,17 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 .article-sidebar h2 {
   font-size: 18px;
 }
-.article-sidebar ol {
+.article-contents ol {
   font-size: 14px;
   padding-left: var(--space-lg);
 }
-.article-sidebar .text-button {
+.article-contents .text-button {
   font-size: 14px;
-  min-height: 44px;
+  min-height: 48px;
+  width: 100%;
+  text-align: left;
+  padding-block: var(--space-xs);
+  line-height: 1.75;
 }
 .article-references {
   border: 0;
@@ -1355,6 +1266,9 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 }
 .article-references > a {
   font-size: 14px;
+  min-height: 48px;
+  padding-block: var(--space-xs);
+  line-height: 1.9;
 }
 .related-challenge {
   display: grid;
@@ -1500,9 +1414,25 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   }
   .article-sidebar {
     position: static;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--gap-columns);
+  }
+  .article-sidebar .article-desktop-contents {
+    display: none;
+  }
+  .article-mobile-contents {
+    display: block;
+    margin-top: var(--space-xl);
+    border-block: 1px solid var(--line);
+  }
+  .article-mobile-contents > summary {
+    padding-block: var(--space-md);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .article-mobile-contents .article-contents ol {
+    margin: 0 0 var(--space-md);
+  }
+  .article-mobile-contents .text-button {
+    font-size: 16px;
   }
 }
 @media (max-width: 680px) {
@@ -1511,10 +1441,7 @@ code:not(:where(.workspace-page, .workspace-page *)) {
     padding-top: var(--space-lg);
     gap: var(--space-md);
   }
-  .brand > span:last-child {
-    font-size: 14px;
-  }
-  .brand > span:last-child > span {
+  .brand {
     font-size: 20px;
   }
   .site-header nav {
@@ -1543,12 +1470,6 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   .hero-actions {
     gap: var(--space-lg);
   }
-  .hero-benefits {
-    gap: var(--space-sm);
-  }
-  .hero-benefits > span {
-    font-size: 12px;
-  }
   .hero-scene {
     display: flex;
     gap: 0;
@@ -1568,7 +1489,7 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   .scene-bottom {
     margin-top: var(--space-lg);
   }
-  .principles-strip span {
+  .principles-strip > .container > span {
     font-size: 12px;
   }
   .challenge-section {
@@ -1597,19 +1518,11 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   .card-content h3 {
     font-size: 25px;
   }
-  .card-content h3 span {
+  .card-content h3 > span {
     display: inline;
   }
   .card-bottom {
     font-size: 14px;
-  }
-  .approach {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-xl);
-    padding-block: var(--space-xl);
-  }
-  .approach h2 {
-    font-size: 28px;
   }
   .knowledge-banner {
     flex-direction: column;
@@ -1631,10 +1544,9 @@ code:not(:where(.workspace-page, .workspace-page *)) {
     font-size: 22px;
   }
   .footer-inner > a:last-child {
+    grid-column: 1;
+    grid-row: auto;
     justify-self: start;
-  }
-  .footer-meta {
-    display: block;
   }
   .page-content {
     padding-block: var(--space-xl);
@@ -1661,17 +1573,33 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   .knowledge-list-item p {
     font-size: 16px;
   }
-  .article-sidebar {
-    grid-template-columns: minmax(0, 1fr);
+  .container.article-page {
+    padding-inline: var(--space-20);
   }
   .article-layout h1 {
-    font-size: 30px;
+    font-size: 28px;
+    line-height: 1.6;
+  }
+  .article-intro {
+    font-size: 17px;
+    line-height: 2;
+    margin-bottom: 0;
+  }
+  .article-meta {
+    gap: var(--space-xs) var(--space-md);
   }
   .article-layout article > section h2 {
-    font-size: 24px;
+    font-size: 22px;
+    line-height: 1.65;
+    margin-bottom: var(--space-md);
+  }
+  .article-layout article > section p {
+    font-size: 17px;
+    line-height: 2;
+    letter-spacing: 0.02em;
   }
   .article-layout article > section {
-    margin-top: var(--space-xl);
+    margin-top: var(--space-52);
   }
   .progress-stats {
     padding-block: var(--space-lg);
@@ -1714,10 +1642,6 @@ code:not(:where(.workspace-page, .workspace-page *)) {
 
 .progress-status {
   margin-top: var(--space-sm);
-}
-.article-meta {
-  padding-block: 0 var(--space-lg);
-  margin-bottom: var(--space-lg);
 }
 @media (max-width: 680px) {
   .progress-stats span {

@@ -6,6 +6,7 @@ import { scenarios } from "../scenarios";
 import { articles } from "../../knowledge/articles";
 import { useProgress } from "../../progress/ProgressProvider";
 import { Icon } from "../../../components/Icon";
+import { BudouX } from "../../../components/BudouX";
 import { MockNewsFeed, MockShop, MockSupportWarning } from "./EverydayApps";
 import {
   MockCommentThread,
@@ -22,36 +23,47 @@ export function HintPanel({
   state: Session;
   dispatch: (event: EngineEvent) => void;
 }) {
+  const panel = useRef<HTMLDetailsElement>(null);
+  useEffect(() => {
+    if (state.hintLevel === 0 && panel.current) panel.current.open = false;
+  }, [state.hintLevel]);
   return (
-    <section className="hint-panel">
-      <div className="row spread">
-        <h3>
-          <Icon name="spark" size={17} /> ヒント
-        </h3>
+    <details
+      className="hint-panel"
+      ref={panel}
+      onToggle={(event) => {
+        if (event.currentTarget.open && state.hintLevel === 0)
+          dispatch({ type: "hint" });
+      }}
+    >
+      <summary>
+        <span>ヒント</span>
         <small>
           {state.hintLevel} / {scenario.hints.length}
         </small>
+        <Icon name="chevron" size={16} />
+      </summary>
+      <div className="hint-content">
+        <ol aria-live="polite">
+          {scenario.hints.slice(0, state.hintLevel).map((hint) => (
+            <li key={hint}>
+              <BudouX>{hint}</BudouX>
+            </li>
+          ))}
+        </ol>
+        <button
+          className="button secondary full"
+          disabled={state.hintLevel === scenario.hints.length}
+          onClick={() => dispatch({ type: "hint" })}
+        >
+          {state.hintLevel === scenario.hints.length
+            ? "すべて表示済み"
+            : state.hintLevel
+              ? "次のヒントを見る"
+              : "ヒントを見る"}
+        </button>
       </div>
-      {state.hintLevel === 0 && (
-        <p className="quiet">迷ったら、少しだけ手掛かりを。</p>
-      )}
-      <ol aria-live="polite">
-        {scenario.hints.slice(0, state.hintLevel).map((hint) => (
-          <li key={hint}>{hint}</li>
-        ))}
-      </ol>
-      <button
-        className="button secondary full"
-        disabled={state.hintLevel === scenario.hints.length}
-        onClick={() => dispatch({ type: "hint" })}
-      >
-        {state.hintLevel === scenario.hints.length
-          ? "すべてのヒントを表示しました"
-          : state.hintLevel
-            ? "次のヒントを見る"
-            : "ヒントを見る"}
-      </button>
-    </section>
+    </details>
   );
 }
 export function DiscoveryPanel({
@@ -72,7 +84,11 @@ export function DiscoveryPanel({
       </div>
       <div
         className="discovery-track"
-        aria-label={`${scenario.discoveries.length}個のポイントを発見`}
+        role="progressbar"
+        aria-label="発見したこと"
+        aria-valuemin={0}
+        aria-valuemax={scenario.discoveries.length}
+        aria-valuenow={state.discoveries.length}
       >
         {scenario.discoveries.map((d) => (
           <span
@@ -82,19 +98,17 @@ export function DiscoveryPanel({
         ))}
       </div>
       <div aria-live="polite">
-        {state.discoveries.length ? (
+        {state.discoveries.length > 0 && (
           <ul>
             {scenario.discoveries
               .filter((d) => state.discoveries.includes(d.id))
               .map((d) => (
                 <li key={d.id}>
                   <Icon name="check" size={16} />
-                  {d.title}
+                  <BudouX>{d.title}</BudouX>
                 </li>
               ))}
           </ul>
-        ) : (
-          <p className="quiet">画面を調べると、ここに記録されます。</p>
         )}
       </div>
     </section>
@@ -103,12 +117,17 @@ export function DiscoveryPanel({
 export function ResultPanel({ outcome }: { outcome: Outcome }) {
   return (
     <section className={`result-panel ${outcome.tone}`} aria-live="polite">
-      <span className="eyebrow">YOUR ACTION, WHAT'S NEXT?</span>
-      <h2>{outcome.title}</h2>
-      <p>{outcome.description}</p>
+      <h2>
+        <BudouX>{outcome.title}</BudouX>
+      </h2>
+      <p>
+        <BudouX>{outcome.description}</BudouX>
+      </p>
       <div className="result-next">
         <Icon name="arrow" size={18} />
-        <p>{outcome.next}</p>
+        <p>
+          <BudouX>{outcome.next}</BudouX>
+        </p>
       </div>
     </section>
   );
@@ -134,7 +153,9 @@ export function ChallengeToolbar({
             {scenario.category} · 約{scenario.estimatedMinutes}分
           </span>
         </div>
-        <h1>{scenario.title}</h1>
+        <h1>
+          <BudouX>{scenario.title}</BudouX>
+        </h1>
       </div>
       <div className="row wrap">
         <button className="button secondary" onClick={onReset}>
@@ -168,25 +189,21 @@ export function ReflectionView({
   );
   return (
     <div className="reflection">
-      <span className="eyebrow">REFLECTION / {scenario.id}</span>
       <h2 ref={ref} tabIndex={-1}>
-        立ち止まった、その先に。
+        振り返り
       </h2>
-      <p className="lead">
-        今回の行動を振り返って、次に使える判断のヒントを持ち帰ろう。
-      </p>
       <section>
         <h3>あなたが試したこと</h3>
         {state.history.length ? (
           <ol className="action-history">
             {state.history.map((action, i) => (
-              <li key={i}>{action.label}</li>
+              <li key={i}>
+                <BudouX>{action.label}</BudouX>
+              </li>
             ))}
           </ol>
         ) : (
-          <p>
-            今回は操作せずに振り返りを開きました。下のボタンから体験に戻れます。
-          </p>
+          <p>まだ操作していません。</p>
         )}
       </section>
       {state.outcomes.length > 0 && (
@@ -199,15 +216,19 @@ export function ReflectionView({
       )}
       <section>
         <h3>
-          発見した問題・手掛かり <span className="quiet">{found.length}個</span>
+          発見したこと <span className="quiet">{found.length}個</span>
         </h3>
         {found.length ? (
           found.map((d) => (
             <div className="reflection-point" key={d.id}>
               <Icon name="check" />
               <div>
-                <h4>{d.title}</h4>
-                <p>{d.detail}</p>
+                <h4>
+                  <BudouX>{d.title}</BudouX>
+                </h4>
+                <p>
+                  <BudouX>{d.detail}</BudouX>
+                </p>
               </div>
             </div>
           ))
@@ -217,27 +238,33 @@ export function ReflectionView({
       </section>
       {missed.length > 0 && (
         <section>
-          <h3>もう一度、確かめたいこと</h3>
+          <h3>未確認のポイント</h3>
           {missed.map((d) => (
             <details className="missed-point" key={d.id}>
-              <summary>{d.title}</summary>
-              <p>{d.detail}</p>
+              <summary>
+                <BudouX>{d.title}</BudouX>
+              </summary>
+              <p>
+                <BudouX>{d.detail}</BudouX>
+              </p>
             </details>
           ))}
         </section>
       )}
       <section className="reality-note">
         <h3>現実の場面では</h3>
-        <p>{scenario.reality}</p>
+        <p>
+          <BudouX>{scenario.reality}</BudouX>
+        </p>
       </section>
       <section>
-        <h3>理由を、もう少し知る</h3>
+        <h3>関連する解説</h3>
         {articles
           .filter((a) => scenario.knowledgeIds.includes(a.id))
           .map((a) => (
             <Link className="article-link" key={a.id} to={`/knowledge/${a.id}`}>
               <Icon name="book" />
-              {a.title}
+              <BudouX>{a.title}</BudouX>
               <Icon name="arrow" />
             </Link>
           ))}
@@ -253,7 +280,7 @@ export function ReflectionView({
           className="button secondary"
           onClick={() => dispatch({ type: "resume" })}
         >
-          途中から続ける
+          体験に戻る
         </button>
         <Link className="text-button" to="/challenges">
           別の体験を選ぶ <Icon name="arrow" size={17} />
@@ -344,44 +371,34 @@ function Workspace({ scenario }: { scenario: Scenario }) {
         {state.reflection ? (
           <ReflectionView scenario={scenario} state={state} dispatch={act} />
         ) : (
-          <div className="workspace-grid">
-            <div className="simulation-column" ref={appRef} tabIndex={-1}>
-              <p className="mobile-objective">{scenario.objective}</p>
-              <Mock state={state} dispatch={act} />
-              {state.outcomes.length > 0 && (
-                <ResultPanel
-                  outcome={state.outcomes[state.outcomes.length - 1]}
-                />
-              )}
-            </div>
-            <aside className="workspace-sidebar">
-              <details
-                className="workspace-help"
-                open={!window.matchMedia("(max-width: 680px)").matches}
-              >
-                <summary>目的・ヒント・発見状況</summary>
+          <>
+            <p className="workspace-objective">
+              <BudouX>{scenario.objective}</BudouX>
+            </p>
+            <div className="workspace-grid">
+              <div className="simulation-column" ref={appRef} tabIndex={-1}>
+                <Mock state={state} dispatch={act} />
+                {state.outcomes.length > 0 && (
+                  <ResultPanel
+                    outcome={state.outcomes[state.outcomes.length - 1]}
+                  />
+                )}
+              </div>
+              <aside className="workspace-sidebar" aria-label="体験の補助">
                 <div className="workspace-help-content">
-                  <section>
-                    <span className="eyebrow">YOUR MISSION</span>
-                    <h2>今回のシチュエーション</h2>
-                    <p>{scenario.objective}</p>
-                    <span className="subtle-note">
-                      気になった場所を、自由に触ってみよう。
-                    </span>
-                  </section>
                   <HintPanel scenario={scenario} state={state} dispatch={act} />
                   <DiscoveryPanel scenario={scenario} state={state} />
                   <Link
                     className="sidebar-knowledge"
                     to={`/knowledge/${scenario.knowledgeIds[0]}`}
                   >
-                    <Icon name="book" size={17} /> 関連する解説を読む{" "}
+                    <Icon name="book" size={17} /> 関連する解説
                     <Icon name="arrow" size={16} />
                   </Link>
                 </div>
-              </details>
-            </aside>
-          </div>
+              </aside>
+            </div>
+          </>
         )}
       </div>
     </div>

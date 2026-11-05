@@ -1,0 +1,5 @@
+.budoux {
+  word-break: keep-all;
+  /* Fall back to character breaks only when a phrase cannot fit the line. */
+  overflow-wrap: anywhere;
+}

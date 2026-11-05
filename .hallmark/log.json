@@ -1,5 +1,70 @@
 [
   {
+    "date": "2026-11-06",
+    "mode": "redesign",
+    "depth": "polish",
+    "scope": "site",
+    "theme": "brand",
+    "genre": "editorial",
+    "system": "design.md",
+    "prompt": "ヘッダーの謎アイコンと薄い説明文を修正。模擬アプリは変更しない。",
+    "changed": [
+      "src/app/App.tsx",
+      "src/styles/global.css"
+    ],
+    "copy": ".hallmark/polish-copy.json",
+    "waived": [
+      "1",
+      "25"
+    ],
+    "verification": {
+      "build": "passed",
+      "unit": 54,
+      "e2e": 26,
+      "visualCaptures": 35,
+      "visualErrors": 0,
+      "mockAppComparison": {
+        "views": 14,
+        "widths": [
+          390,
+          1440
+        ],
+        "differences": 0,
+        "method": "SHA-256 of cropped workspace screenshots for all seven lessons"
+      },
+      "hallmark": {
+        "fail": 0,
+        "reflex": 0,
+        "warn": 0,
+        "waived": 2,
+        "rejected": 1,
+        "answered": 3,
+        "notes": 2,
+        "limitation": "Existing gate 1 waiver accepted with CSS tokens, rejected in isolated App.tsx context because font tokens are not collected there. No font changes; design.md locks the system stack.",
+        "retainedLayoutNotes": [
+          "59: existing section gaps",
+          "77: existing knowledge link band"
+        ],
+        "links": "21/21",
+        "handlers": "9/9",
+        "review": "in-thread; user prohibits subagents",
+        "compare": ".hallmark/compare.html"
+      },
+      "verifiedAt": "2026-11-06T01:13:48+09:00",
+      "integrationRecheck": {
+        "build": "passed",
+        "navigationE2e": 6,
+        "note": "Rechecked with the concurrent article changes present; those changes remain owned by the other task."
+      }
+    },
+    "material": {
+      "newImages": 0,
+      "missingAssets": 0,
+      "source": "existing product and lesson descriptions"
+    },
+    "concurrentChanges": "Article reading/navigation changes in App.tsx and global.css, and budoux in package.json/bun.lock, arrived after the visual verification. Preserved as separate work; not part of this polish."
+  },
+  {
     "mode": "redesign",
     "depth": "full",
     "scope": "site",
