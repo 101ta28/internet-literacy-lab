@@ -31,7 +31,17 @@ E2Eテストの前には `bun run build` が必要です。4173番ポートで�
 
 ## 静的ホスティング
 
-`bun run build` で作成した **`dist/` の中身**を静的ホスティングへ配置します。バックエンド、認証、データベース、外部APIは使いません。公開先のアカウント作成やデプロイはこのリポジトリの実装範囲に含めていません。
+`bun run build` で作成した **`dist/` の中身**を静的ホスティングへ配置します。バックエンド、認証、データベース、外部APIは使いません。
+
+### GitHub Pagesに公開する
+
+公開先URLは <https://101ta28.github.io/internet-literacy-lab/> です。[公開用ワークフロー](.github/workflows/deploy-pages.yml) は、`main` へのpush時に単体テストと本番用ビルドを実行し、両方が成功した場合に `dist/` を公開します。Node.js 22と、`package.json` の `packageManager` に指定したBunを使用します。
+
+初回は、GitHubリポジトリの **Settings → Pages → Build and deployment → Source** で **GitHub Actions** を選択します。その後、ワークフローを含む変更を `main` にpushしてください。設定前にpushした場合は、**Actions → Deploy to GitHub Pages → Run workflow** で `main` を選んで実行します。
+
+公開結果はActionsの `deploy` ジョブで確認できます。成功後、公開先URLを開いてください。以後は `main` へのpushごとに更新されます。単体テストやビルドに失敗した場合、公開済みのサイトは更新されません。ブラウザでのE2Eテストは公開ワークフローには含めず、必要に応じてローカルで実行します。
+
+### 配信パスと画面URL
 
 Viteの `base: './'` と React Router の `HashRouter` を使っているため、サブディレクトリへの配信にも対応します。サーバー側のページ振り分け設定は不要です。
 
