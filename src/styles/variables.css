@@ -1,0 +1,4 @@
+:root {
+  --font: var(--font-body);
+  --mono: var(--font-outlier);
+}

@@ -1,0 +1,61 @@
+[
+  {
+    "mode": "redesign",
+    "depth": "full",
+    "scope": "site",
+    "shape": "Index-First",
+    "theme": "brand",
+    "genre": "editorial",
+    "axes": "light/grotesk-sans/cool",
+    "hero": "Banner",
+    "nav": "masthead",
+    "footer": "colophon",
+    "imagery": "existing fictional curriculum illustrations; no external assets",
+    "photos": [],
+    "entry": "/",
+    "fingerprint": [
+      "Index-First",
+      "Banner",
+      "masthead",
+      "colophon",
+      "two-column index",
+      "fictional message specimen"
+    ],
+    "sections": [
+      "message specimen",
+      "safety statements",
+      "challenge index",
+      "learning steps",
+      "knowledge link",
+      "colophon"
+    ],
+    "signature": "fictional delivery message and URL set beside the central question",
+    "waived": [
+      "1"
+    ],
+    "prompt": "教材と機能を保ち、画面構成から全面的に再設計する",
+    "verification": {
+      "unit": 34,
+      "e2e": 20,
+      "visualCaptures": 17,
+      "visualErrors": 0,
+      "review": "in-thread",
+      "hallmarkRender": "Chrome setsockopt Operation not permitted",
+      "lessonRestoration": {
+        "build": "passed",
+        "unit": 34,
+        "e2e": {
+          "startTime": "2026-11-05T12:13:28.083Z",
+          "duration": 22567.586,
+          "expected": 20,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "visualReview": "Email, post, photo and comment screenshots inspected; email and photo compared with pre-redesign captures"
+      }
+    },
+    "date": "2026-11-05",
+    "lessonUi": "Restored original components and scoped original CSS. Excluded from Hallmark restyling at user request."
+  }
+]

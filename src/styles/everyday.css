@@ -1,0 +1,192 @@
+/* Additional simulations only. Keep the original four experiences intact. */
+.workspace-page .everyday-app {
+  overflow-wrap: anywhere;
+}
+.workspace-page .everyday-app h2 {
+  font-size: 24px;
+}
+.workspace-page .everyday-app h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.workspace-page .everyday-app .detail-box {
+  display: block;
+  margin: 18px 0;
+}
+.workspace-page .investigation-actions,
+.workspace-page .decision-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+.workspace-page .investigation-actions {
+  padding-block: 16px;
+  border-block: 1px solid var(--line);
+}
+.workspace-page .evidence-panel {
+  margin: 18px 0;
+}
+.workspace-page .event-notice {
+  position: relative;
+  padding: 28px 24px;
+  background: #edf0e8;
+  border: 1px solid #bac9bd;
+  color: #334e40;
+  margin: 18px 0;
+  text-align: center;
+  overflow: hidden;
+}
+.workspace-page .event-notice > span:first-child {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+}
+.workspace-page .event-notice strong {
+  display: block;
+  font-size: 25px;
+  margin: 12px 0;
+}
+.workspace-page .event-notice small {
+  display: block;
+}
+.workspace-page .event-notice p {
+  margin-bottom: 8px;
+}
+.workspace-page .notice-cut {
+  display: block;
+  height: 7px;
+  background: #fff;
+  margin: 24px -24px -28px;
+  border-top: 1px dashed #718574;
+}
+.workspace-page .shop-promotion {
+  background: #f4e3ca;
+  color: #774013;
+  padding: 10px 16px;
+  font-weight: 700;
+  text-align: center;
+}
+.workspace-page .shop-product {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(0, 1.2fr);
+  gap: 20px;
+  align-items: center;
+  margin: 24px 0;
+}
+.workspace-page .headphone-product {
+  width: 100%;
+  height: auto;
+  background: #eef0e9;
+  border-radius: 8px;
+}
+.workspace-page .shop-price > * {
+  display: block;
+}
+.workspace-page .shop-price del {
+  font-size: 14px;
+  color: var(--muted);
+}
+.workspace-page .shop-price strong {
+  color: #954725;
+  font-size: 34px;
+  line-height: 1.4;
+}
+.workspace-page .shop-price span {
+  font-size: 13px;
+}
+.workspace-page .transaction-details {
+  margin: 18px 0;
+  text-align: left;
+}
+.workspace-page .transaction-details > div {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.4fr);
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+}
+.workspace-page .transaction-details dt {
+  color: var(--muted);
+}
+.workspace-page .transaction-details dd {
+  margin: 0;
+}
+.workspace-page .mock-tabbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+  background: #f1f3ed;
+  font-size: 13px;
+}
+.workspace-page .mock-tabbar button {
+  flex-shrink: 0;
+}
+.workspace-page .simulated-warning {
+  border: 2px solid #a04d32;
+  background: #fff6ee;
+  padding: 24px;
+  color: #563421;
+}
+.workspace-page .simulated-warning > .row {
+  margin-bottom: 28px;
+}
+.workspace-page .simulated-warning > svg {
+  margin-bottom: 12px;
+}
+.workspace-page .simulated-warning .button {
+  margin-top: 20px;
+}
+.workspace-page .support-number {
+  font-family: var(--mono);
+  font-size: 23px;
+  font-weight: 700;
+  margin-block: 22px 0;
+}
+.workspace-page .support-call blockquote {
+  margin: 20px 0;
+  border-left: 3px solid #8ba395;
+  padding: 16px 20px;
+  background: #f1f4ec;
+}
+.workspace-page .connection-status {
+  display: inline-block;
+  color: #873b22;
+  border: 1px solid #c79676;
+  padding: 5px 12px;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.workspace-page .simulation-note {
+  margin-top: 24px;
+}
+@media (max-width: 680px) {
+  .workspace-page .shop-product {
+    grid-template-columns: 1fr;
+  }
+  .workspace-page .headphone-product {
+    max-height: 190px;
+  }
+  .workspace-page .simulated-warning {
+    padding: 18px;
+  }
+  .workspace-page .mock-tabbar {
+    padding-inline: 12px;
+  }
+  .workspace-page .mock-tabbar > span {
+    max-width: 50%;
+  }
+  .workspace-page .event-notice {
+    padding-inline: 16px;
+  }
+  .workspace-page .event-notice strong {
+    font-size: 21px;
+  }
+  .workspace-page .everyday-app .mock-empty {
+    padding: 22px 0;
+  }
+}

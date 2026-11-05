@@ -1,0 +1,23 @@
+{
+  "scanned": "2026-11-05",
+  "findings": {
+    "fonts": "src/styles/variables.css:9 system Japanese sans; monospace for URLs",
+    "palette": "src/styles/variables.css:2 forest, off-white, lime",
+    "motion": "CSS only",
+    "spacing": "mixed raw values; migrate to 4px scale",
+    "framework": "React 19 / Vite 7 / TypeScript"
+  },
+  "preserve": [
+    "brand colours",
+    "system font",
+    "all curriculum, routes and handlers",
+    "fictional teaching illustrations",
+    "original virtual browser, mock applications and lesson styles"
+  ],
+  "introduce": [
+    "editorial hierarchy",
+    "shared tokens",
+    "wide two-column challenge index",
+    "explicit CSS boundary between site and lesson environment"
+  ]
+}
