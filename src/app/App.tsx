@@ -629,11 +629,56 @@ function AboutPage() {
       <div className="about-copy">
         <section>
           <h2>
+            <BudouX>作成者とソースコード</BudouX>
+          </h2>
+          <p>
+            <BudouX>
+              誰が作り、どのように動くサイトなのかを確認できるよう、作成者のプロフィールとソースコードを公開しています。
+            </BudouX>
+          </p>
+          <dl className="about-project">
+            <div>
+              <dt>作成者</dt>
+              <dd>
+                <a
+                  href="https://github.com/101ta28"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Imai Tatsuya（@101ta28）</span>
+                  <Icon name="external" size={16} />
+                  <span className="sr-only">（外部サイト・新しいタブ）</span>
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt>GitHub リポジトリ</dt>
+              <dd>
+                <a
+                  href="https://github.com/101ta28/internet-literacy-lab"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>github.com/101ta28/internet-literacy-lab</span>
+                  <Icon name="external" size={16} />
+                  <span className="sr-only">（外部サイト・新しいタブ）</span>
+                </a>
+              </dd>
+            </div>
+          </dl>
+          <p>
+            <BudouX>
+              リンクは GitHub を新しいタブで開きます。リポジトリでは、サイトの実装や変更履歴を確認できます。
+            </BudouX>
+          </p>
+        </section>
+        <section>
+          <h2>
             <BudouX>模擬環境</BudouX>
           </h2>
           <p>
             <BudouX>
-              人物、学校、会社、サービス、メールアドレスはすべて架空です。模擬URLには教材用の
+              教材に登場する人物、学校、会社、サービス、メールアドレスはすべて架空です。模擬URLには教材用の
               .example
               ドメインを使用しています。ボタンを押しても、実際のSNSへの投稿やメール送信は起こりません。
             </BudouX>
@@ -655,7 +700,7 @@ function AboutPage() {
           </p>
           <p>
             <BudouX>
-              広告・アクセス解析・外部フォントは使っていません。解説の参考資料リンクを自分で選んだ場合は、外部サイトに移動します。
+              広告・アクセス解析・外部フォントは使っていません。GitHub や解説の参考資料へのリンクを自分で選んだ場合は、外部サイトに移動します。
             </BudouX>
           </p>
           <p>

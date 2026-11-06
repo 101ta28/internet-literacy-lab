@@ -1347,6 +1347,42 @@ code:not(:where(.workspace-page, .workspace-page *)) {
   font-size: 16px;
   line-height: 2;
 }
+.about-project {
+  margin-block: var(--space-lg);
+}
+.about-project > div {
+  display: grid;
+  grid-template-columns: 10em minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-md);
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--line);
+}
+.about-project dt {
+  font-weight: 700;
+}
+.about-project dd {
+  margin: 0;
+  min-width: 0;
+}
+.about-project a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 44px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+}
+.about-project a:hover {
+  color: var(--forest-hover);
+}
+@media (max-width: 680px) {
+  .about-project > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+}
 
 /* The interactive lessons: the app is a surface, help is an open margin. */
 .storage-warning:not(:where(.workspace-page, .workspace-page *)) {
